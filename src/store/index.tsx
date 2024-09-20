@@ -6,7 +6,16 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import {
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    persistReducer,
+    persistStore,
+    PURGE,
+    REGISTER,
+    REHYDRATE
+} from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // @ts-ignore
 import { encryptTransform } from 'redux-persist-transform-encrypt';
@@ -15,7 +24,10 @@ import { apiMiddlewares } from '../api/services';
 import { Persistor } from 'redux-persist/es/types';
 
 // ==============================|| REDUX PERSIST For Next.js SSR ||============================== //
-const PersistGateNoSSR = dynamic(() => import('redux-persist/integration/react').then((mod) => mod.PersistGate), { ssr: false });
+const PersistGateNoSSR = dynamic(
+    () => import('redux-persist/integration/react').then((mod) => mod.PersistGate),
+    { ssr: false }
+);
 
 const createNoopStorage = () => {
     return {
@@ -46,7 +58,7 @@ const persistConfig = {
         // For Store Encryption in LocalStorage
         encryptTransform({
             secretKey: 'Developed-By-Jasir-Ullah-Khan',
-            onError: function (error: any) {
+            onError: function(error: any) {
                 console.log('Error during encryption', error);
             }
         })
