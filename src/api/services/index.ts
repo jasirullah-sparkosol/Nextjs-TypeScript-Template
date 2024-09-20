@@ -1,8 +1,15 @@
-import { Middleware } from "@reduxjs/toolkit";
+import { Middleware, Reducer } from '@reduxjs/toolkit';
 
 // project imports
-import { userApi } from "./userApi";
+import { FileApi } from './fileApi';
+import { GiftApi } from './giftApi';
 
-const apiMiddlewares: Middleware[] = [userApi.middleware];
+export const apiMiddlewares: Middleware[] = [
+    FileApi.middleware,
+    GiftApi.middleware
+];
 
-export { userApi, apiMiddlewares };
+export const apiReducers: Record<string, Reducer> = {
+    [FileApi.reducerPath]: FileApi.reducer,
+    [GiftApi.reducerPath]: GiftApi.reducer
+};
