@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { lazy } from 'react';
-import { usePathname } from 'next/navigation';
+import { lazy } from "react";
+import { usePathname } from "next/navigation";
 
 // project-import
-import { SimpleLayoutType } from 'config';
+import { SimpleLayoutType } from "config";
 
-const Header = lazy(() => import('./Header'));
-const FooterBlock = lazy(() => import('./FooterBlock'));
+const Header = lazy(() => import("./Header"));
+const FooterBlock = lazy(() => import("./FooterBlock"));
 
 // ==============================|| LAYOUTS - STRUCTURE ||============================== //
 
@@ -17,7 +17,10 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const pathname = usePathname();
-  const layout: string = pathname === 'landing' || pathname === '/' ? SimpleLayoutType.LANDING : SimpleLayoutType.SIMPLE;
+  const layout: string =
+    pathname === "landing" || pathname === "/"
+      ? SimpleLayoutType.LANDING
+      : SimpleLayoutType.SIMPLE;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import ForgotPassword from 'views/auth/forgot-password';
+import ForgotPassword from "views/auth/forgot-password";
 
 // ==============================|| PAGE ||============================== //
 

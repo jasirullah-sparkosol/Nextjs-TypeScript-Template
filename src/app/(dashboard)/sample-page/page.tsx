@@ -1,4 +1,4 @@
-import SamplePage from 'views/sample-page';
+import SamplePage from "views/sample-page";
 
 // ==============================|| PAGE ||============================== //
 

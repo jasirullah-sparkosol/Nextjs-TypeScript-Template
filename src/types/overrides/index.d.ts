@@ -1,8 +1,8 @@
 /* eslint-disable */
 // material-ui
-import Color from '@mui/material/Color';
+import Color from "@mui/material/Color";
 
-declare module '@mui/material' {
+declare module "@mui/material" {
   interface Color {
     0?: string;
     A50?: string;
@@ -11,7 +11,7 @@ declare module '@mui/material' {
 }
 
 // react-table
-declare module '@tanstack/react-table' {
+declare module "@tanstack/react-table" {
   export interface ColumnMeta {
     className?: string;
   }

@@ -1,5 +1,5 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // ==============================|| OVERRIDES - ALERT TITLE ||============================== //
 
@@ -9,23 +9,23 @@ export default function Accordion(theme: Theme) {
       defaultProps: {
         disableGutters: true,
         square: true,
-        elevation: 0
+        elevation: 0,
       },
       styleOverrides: {
         root: {
-          border: '1px solid',
+          border: "1px solid",
           borderColor: theme.palette.secondary.light,
-          '&:not(:last-child)': {
-            borderBottom: 0
+          "&:not(:last-child)": {
+            borderBottom: 0,
           },
-          '&:before': {
-            display: 'none'
+          "&:before": {
+            display: "none",
           },
-          '&.Mui-disabled': {
-            backgroundColor: theme.palette.secondary.lighter
-          }
-        }
-      }
-    }
+          "&.Mui-disabled": {
+            backgroundColor: theme.palette.secondary.lighter,
+          },
+        },
+      },
+    },
   };
 }

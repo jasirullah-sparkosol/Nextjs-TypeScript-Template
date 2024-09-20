@@ -5,10 +5,10 @@ export default function DialogTitle() {
     MuiDialogTitle: {
       styleOverrides: {
         root: {
-          fontSize: '1rem',
-          fontWeight: 500
-        }
-      }
-    }
+          fontSize: "1rem",
+          fontWeight: 500,
+        },
+      },
+    },
   };
 }

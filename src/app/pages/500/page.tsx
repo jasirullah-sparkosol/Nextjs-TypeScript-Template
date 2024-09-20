@@ -1,4 +1,4 @@
-import Error500 from 'views/maintenance/500';
+import Error500 from "views/maintenance/500";
 
 // ==============================|| PAGE - ERROR 500 ||============================== //
 

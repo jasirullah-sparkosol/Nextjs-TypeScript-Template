@@ -1,4 +1,4 @@
-import UnderConstruction from 'views/maintenance/under-construction';
+import UnderConstruction from "views/maintenance/under-construction";
 
 // ==============================|| PAGE ||============================== //
 

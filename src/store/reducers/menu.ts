@@ -1,22 +1,22 @@
 // third-party
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 // types
-import { MenuProps } from 'types/menu';
+import { MenuProps } from "types/menu";
 
 // initial state
 const initialState: MenuProps = {
-  openedItem: 'dashboard',
-  openedComponent: 'buttons',
+  openedItem: "dashboard",
+  openedComponent: "buttons",
   openedHorizontalItem: null,
   isDashboardDrawerOpened: false,
-  isComponentDrawerOpened: true
+  isComponentDrawerOpened: true,
 };
 
 // ==============================|| SLICE - MENU ||============================== //
 
 const menu = createSlice({
-  name: 'menu',
+  name: "menu",
   initialState,
   reducers: {
     handlerActiveItem(state, action) {
@@ -37,8 +37,8 @@ const menu = createSlice({
 
     handlerComponentDrawer(state, action) {
       state.isComponentDrawerOpened = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export default menu.reducer;
@@ -48,5 +48,5 @@ export const {
   handlerActiveComponent,
   handlerHorizontalActiveItem,
   handlerDrawerOpen,
-  handlerComponentDrawer
+  handlerComponentDrawer,
 } = menu.actions;

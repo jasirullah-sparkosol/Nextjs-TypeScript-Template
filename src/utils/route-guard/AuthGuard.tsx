@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 // next
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 // project-import
-import Loader from 'components/Loader';
+import Loader from "components/Loader";
 
 // types
-import { GuardProps } from 'types/auth';
+import { GuardProps } from "types/auth";
 
 // ==============================|| AUTH GUARD ||============================== //
 
@@ -20,10 +20,10 @@ export default function AuthGuard({ children }: GuardProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/auth/protected');
+      const res = await fetch("/api/auth/protected");
       const json = await res?.json();
       if (!json?.protected) {
-        router.push('/login');
+        router.push("/login");
       }
     };
     fetchData();
@@ -31,7 +31,7 @@ export default function AuthGuard({ children }: GuardProps) {
     // eslint-disable-next-line
   }, [session]);
 
-  if (status === 'loading' || !session?.user) return <Loader />;
+  if (status === "loading" || !session?.user) return <Loader />;
 
   return children;
 }

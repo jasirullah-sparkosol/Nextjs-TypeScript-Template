@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 // project imports
-import axios from '../../utils/axios';
+import axios from "../../utils/axios";
 
 // ----------------------------------------------------------------------
 
@@ -9,11 +9,11 @@ const initialState = {
   error: null,
   isLoading: false,
   users: [],
-  totalPages: 0
+  totalPages: 0,
 };
 
 const slice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
     // HAS ERROR
@@ -31,8 +31,8 @@ const slice = createSlice({
 
     setTotalPages(state, action) {
       state.totalPages = action.payload;
-    }
-  }
+    },
+  },
 });
 
 // Reducer
@@ -40,16 +40,16 @@ export default slice.reducer;
 
 // ----------------------------------------------------------------------
 
-export function getAllUsers(perPage: any, page: any, role = 'USER') {
+export function getAllUsers(perPage: any, page: any, role = "USER") {
   return async (dispatch: any) => {
     try {
       await dispatch(slice.actions.setLoading(true));
-      const response = await axios.get('/persons/customers', {
+      const response = await axios.get("/persons/customers", {
         params: {
           page,
           perPage,
-          role
-        }
+          role,
+        },
       });
       await dispatch(slice.actions.setUsers(response.data));
       await dispatch(slice.actions.setLoading(false));

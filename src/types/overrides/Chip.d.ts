@@ -1,7 +1,7 @@
 /* eslint-disable */
-import * as Chip from '@mui/material/Chip';
+import * as Chip from "@mui/material/Chip";
 
-declare module '@mui/material/Chip' {
+declare module "@mui/material/Chip" {
   interface ChipPropsVariantOverrides {
     light;
     combined;

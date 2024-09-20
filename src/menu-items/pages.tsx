@@ -1,11 +1,11 @@
 // third-party
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 // assets
-import { PhoneOutlined, RocketOutlined } from '@ant-design/icons';
+import { PhoneOutlined, RocketOutlined } from "@ant-design/icons";
 
 // type
-import { NavItemType } from 'types/menu';
+import { NavItemType } from "types/menu";
 
 // icons
 const icons = { PhoneOutlined, RocketOutlined };
@@ -13,55 +13,55 @@ const icons = { PhoneOutlined, RocketOutlined };
 // ==============================|| MENU ITEMS - PAGES ||============================== //
 
 const pages: NavItemType = {
-  id: 'group-pages',
+  id: "group-pages",
   title: <FormattedMessage id="pages" />,
-  type: 'group',
+  type: "group",
   children: [
     {
-      id: 'maintenance',
+      id: "maintenance",
       title: <FormattedMessage id="maintenance" />,
-      type: 'collapse',
+      type: "collapse",
       icon: icons.RocketOutlined,
       children: [
         {
-          id: 'error-404',
+          id: "error-404",
           title: <FormattedMessage id="error-404" />,
-          type: 'item',
-          url: '/pages/404',
-          target: true
+          type: "item",
+          url: "/pages/404",
+          target: true,
         },
         {
-          id: 'error-500',
+          id: "error-500",
           title: <FormattedMessage id="error-500" />,
-          type: 'item',
-          url: '/pages/500',
-          target: true
+          type: "item",
+          url: "/pages/500",
+          target: true,
         },
         {
-          id: 'coming-soon',
+          id: "coming-soon",
           title: <FormattedMessage id="coming-soon" />,
-          type: 'item',
-          url: '/pages/coming-soon',
-          target: true
+          type: "item",
+          url: "/pages/coming-soon",
+          target: true,
         },
         {
-          id: 'under-construction',
+          id: "under-construction",
           title: <FormattedMessage id="under-construction" />,
-          type: 'item',
-          url: '/pages/under-construction',
-          target: true
-        }
-      ]
+          type: "item",
+          url: "/pages/under-construction",
+          target: true,
+        },
+      ],
     },
     {
-      id: 'contact-us',
+      id: "contact-us",
       title: <FormattedMessage id="contact-us" />,
-      type: 'item',
-      url: '/contact-us',
+      type: "item",
+      url: "/contact-us",
       icon: icons.PhoneOutlined,
-      target: true
-    }
-  ]
+      target: true,
+    },
+  ],
 };
 
 export default pages;

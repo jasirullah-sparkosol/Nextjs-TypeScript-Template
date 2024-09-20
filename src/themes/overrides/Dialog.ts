@@ -1,5 +1,5 @@
 // material-ui
-import { alpha } from '@mui/material/styles';
+import { alpha } from "@mui/material/styles";
 
 // ==============================|| OVERRIDES - DIALOG ||============================== //
 
@@ -8,11 +8,11 @@ export default function Dialog() {
     MuiDialog: {
       styleOverrides: {
         root: {
-          '& .MuiBackdrop-root': {
-            backgroundColor: alpha('#000', 0.7)
-          }
-        }
-      }
-    }
+          "& .MuiBackdrop-root": {
+            backgroundColor: alpha("#000", 0.7),
+          },
+        },
+      },
+    },
   };
 }

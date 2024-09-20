@@ -1,18 +1,21 @@
 // material-ui
-import { alpha, Theme } from '@mui/material/styles';
+import { alpha, Theme } from "@mui/material/styles";
 
 // project import
-import { ThemeMode } from 'config';
+import { ThemeMode } from "config";
 
 // types
-import { CustomShadowProps } from 'types/theme';
+import { CustomShadowProps } from "types/theme";
 
 // ==============================|| DEFAULT THEME - CUSTOM SHADOWS ||============================== //
 
 export default function CustomShadows(theme: Theme): CustomShadowProps {
   return {
     // z1: `0px 2px 8px rgba(0, 0, 0, 0.15)`,
-    button: theme.palette.mode === ThemeMode.DARK ? `0 2px 0 rgb(0 0 0 / 5%)` : `0 2px #0000000b`,
+    button:
+      theme.palette.mode === ThemeMode.DARK
+        ? `0 2px 0 rgb(0 0 0 / 5%)`
+        : `0 2px #0000000b`,
     text: `0 -1px 0 rgb(0 0 0 / 12%)`,
     z1:
       theme.palette.mode === ThemeMode.DARK
@@ -31,6 +34,6 @@ export default function CustomShadows(theme: Theme): CustomShadowProps {
     warningButton: `0 14px 12px ${alpha(theme.palette.warning.main, 0.2)}`,
     infoButton: `0 14px 12px ${alpha(theme.palette.info.main, 0.2)}`,
     successButton: `0 14px 12px ${alpha(theme.palette.success.main, 0.2)}`,
-    greyButton: `0 14px 12px ${alpha(theme.palette.grey[500], 0.2)}`
+    greyButton: `0 14px 12px ${alpha(theme.palette.grey[500], 0.2)}`,
   };
 }

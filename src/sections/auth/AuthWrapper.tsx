@@ -1,14 +1,14 @@
-import { ReactElement } from 'react';
+import { ReactElement } from "react";
 
 // material-ui
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 // project import
-import AuthCard from './AuthCard';
-import AuthBackground from './AuthBackground';
-import AuthFooter from 'components/cards/AuthFooter';
-import Logo from 'components/logo';
+import AuthCard from "./AuthCard";
+import AuthBackground from "./AuthBackground";
+import AuthFooter from "components/cards/AuthFooter";
+import Logo from "components/logo";
 
 interface Props {
   children: ReactElement;
@@ -18,9 +18,14 @@ interface Props {
 
 export default function AuthWrapper({ children }: Props) {
   return (
-    <Box sx={{ minHeight: '100vh' }}>
+    <Box sx={{ minHeight: "100vh" }}>
       <AuthBackground />
-      <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
+      <Grid
+        container
+        direction="column"
+        justifyContent="flex-end"
+        sx={{ minHeight: "100vh" }}
+      >
         <Grid item xs={12} sx={{ ml: 3, mt: 3 }}>
           <Logo />
         </Grid>
@@ -31,7 +36,13 @@ export default function AuthWrapper({ children }: Props) {
             container
             justifyContent="center"
             alignItems="center"
-            sx={{ minHeight: { xs: 'calc(100vh - 210px)', sm: 'calc(100vh - 134px)', md: 'calc(100vh - 112px)' } }}
+            sx={{
+              minHeight: {
+                xs: "calc(100vh - 210px)",
+                sm: "calc(100vh - 134px)",
+                md: "calc(100vh - 112px)",
+              },
+            }}
           >
             <Grid item>
               <AuthCard>{children}</AuthCard>

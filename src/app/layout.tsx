@@ -1,16 +1,20 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import './globals.css';
+import "./globals.css";
 
 // PROJECT IMPORTS
-import ProviderWrapper from './ProviderWrapper';
+import ProviderWrapper from "./ProviderWrapper";
 
 export const metadata: Metadata = {
-  title: 'Mantis Material UI React Dashboard Template',
-  description: 'Mantis Material UI React Dashboard Template'
+  title: "Mantis Material UI React Dashboard Template",
+  description: "Mantis Material UI React Dashboard Template",
 };
 
-export default function RootLayout({ children }: { children: React.ReactElement }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactElement;
+}) {
   return (
     <html lang="en">
       <body>

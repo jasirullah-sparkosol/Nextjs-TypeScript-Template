@@ -1,55 +1,55 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 // next
-import Image from 'next/legacy/image';
-import NextLink from 'next/link';
-import { signIn } from 'next-auth/react';
+import Image from "next/legacy/image";
+import NextLink from "next/link";
+import { signIn } from "next-auth/react";
 
 // material-ui
-import { Theme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Theme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // project import
-import FirebaseSocial from './FirebaseSocial';
-import IconButton from 'components/@extended/IconButton';
-import AnimateButton from 'components/@extended/AnimateButton';
+import FirebaseSocial from "./FirebaseSocial";
+import IconButton from "components/@extended/IconButton";
+import AnimateButton from "components/@extended/AnimateButton";
 
-import { APP_DEFAULT_PATH } from 'config';
-import { strengthColor, strengthIndicator } from 'utils/password-strength';
+import { APP_DEFAULT_PATH } from "config";
+import { strengthColor, strengthIndicator } from "utils/password-strength";
 
 // assets
-import EyeOutlined from '@ant-design/icons/EyeOutlined';
-import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
+import EyeOutlined from "@ant-design/icons/EyeOutlined";
+import EyeInvisibleOutlined from "@ant-design/icons/EyeInvisibleOutlined";
 
 // types
-import { StringColorProps } from 'types/password';
+import { StringColorProps } from "types/password";
 
-const Auth0 = '/assets/images/icons/auth0.svg';
-const Cognito = '/assets/images/icons/aws-cognito.svg';
-const Google = '/assets/images/icons/google.svg';
+const Auth0 = "/assets/images/icons/auth0.svg";
+const Cognito = "/assets/images/icons/aws-cognito.svg";
+const Google = "/assets/images/icons/google.svg";
 
 // ============================|| AWS CONNITO - LOGIN ||============================ //
 
 export default function AuthRegister({ providers, csrfToken }: any) {
-  const downSM = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const downSM = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
   const [level, setLevel] = React.useState<StringColorProps>();
   const [showPassword, setShowPassword] = React.useState(false);
@@ -67,35 +67,38 @@ export default function AuthRegister({ providers, csrfToken }: any) {
   };
 
   React.useEffect(() => {
-    changePassword('');
+    changePassword("");
   }, []);
 
   return (
     <>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
-          company: '',
-          email: '',
-          password: '',
-          submit: null
+          firstName: "",
+          lastName: "",
+          company: "",
+          email: "",
+          password: "",
+          submit: null,
         }}
         validationSchema={Yup.object().shape({
-          firstName: Yup.string().max(20).required('First Name is required'),
-          lastName: Yup.string().max(20).required('Last Name is required'),
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          firstName: Yup.string().max(20).required("First Name is required"),
+          lastName: Yup.string().max(20).required("Last Name is required"),
+          email: Yup.string()
+            .email("Must be a valid email")
+            .max(255)
+            .required("Email is required"),
+          password: Yup.string().max(255).required("Password is required"),
         })}
         onSubmit={(values, { setErrors, setSubmitting }) => {
-          signIn('register', {
+          signIn("register", {
             redirect: false,
             firstName: values.firstName,
             lastName: values.lastName,
             company: values.company,
             email: values.email,
             password: values.password,
-            callbackUrl: APP_DEFAULT_PATH
+            callbackUrl: APP_DEFAULT_PATH,
           }).then((res: any) => {
             if (res?.error) {
               setErrors({ submit: res.error });
@@ -104,7 +107,15 @@ export default function AuthRegister({ providers, csrfToken }: any) {
           });
         }}
       >
-        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
+        {({
+          errors,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          touched,
+          values,
+        }) => (
           <form noValidate onSubmit={handleSubmit}>
             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <Grid container spacing={3}>
@@ -124,7 +135,10 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                   />
                 </Stack>
                 {touched.firstName && errors.firstName && (
-                  <FormHelperText error id="standard-weight-helper-text-name-login">
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-name-login"
+                  >
                     {errors.firstName}
                   </FormHelperText>
                 )}
@@ -145,7 +159,10 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                   />
                 </Stack>
                 {touched.lastName && errors.lastName && (
-                  <FormHelperText error id="standard-weight-helper-text-name-login">
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-name-login"
+                  >
                     {errors.lastName}
                   </FormHelperText>
                 )}
@@ -166,7 +183,10 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                   />
                 </Stack>
                 {touched.company && errors.company && (
-                  <FormHelperText error id="standard-weight-helper-text-name-login">
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-name-login"
+                  >
                     {errors.company}
                   </FormHelperText>
                 )}
@@ -187,7 +207,10 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                   />
                 </Stack>
                 {touched.email && errors.email && (
-                  <FormHelperText error id="standard-weight-helper-text-email-login">
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-email-login"
+                  >
                     {errors.email}
                   </FormHelperText>
                 )}
@@ -199,7 +222,7 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
                     id="-password-login"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     value={values.password}
                     name="password"
                     onBlur={handleBlur}
@@ -216,7 +239,11 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                           edge="end"
                           color="secondary"
                         >
-                          {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                          {showPassword ? (
+                            <EyeOutlined />
+                          ) : (
+                            <EyeInvisibleOutlined />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -224,14 +251,24 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                   />
                 </Stack>
                 {touched.password && errors.password && (
-                  <FormHelperText error id="standard-weight-helper-text-password-login">
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-password-login"
+                  >
                     {errors.password}
                   </FormHelperText>
                 )}
                 <FormControl fullWidth sx={{ mt: 2 }}>
                   <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                      <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: '7px' }} />
+                      <Box
+                        sx={{
+                          bgcolor: level?.color,
+                          width: 85,
+                          height: 8,
+                          borderRadius: "7px",
+                        }}
+                      />
                     </Grid>
                     <Grid item>
                       <Typography variant="subtitle1" fontSize="0.75rem">
@@ -261,7 +298,15 @@ export default function AuthRegister({ providers, csrfToken }: any) {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                  >
                     Create Account
                   </Button>
                 </AnimateButton>
@@ -275,49 +320,77 @@ export default function AuthRegister({ providers, csrfToken }: any) {
         <Stack
           direction="row"
           spacing={{ xs: 1, sm: 2 }}
-          justifyContent={{ xs: 'space-around', sm: 'space-between' }}
-          sx={{ mt: 3, '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } } }}
+          justifyContent={{ xs: "space-around", sm: "space-between" }}
+          sx={{
+            mt: 3,
+            "& .MuiButton-startIcon": {
+              mr: { xs: 0, sm: 1 },
+              ml: { xs: 0, sm: -0.5 },
+            },
+          }}
         >
           {Object.values(providers).map((provider: any) => {
-            if (provider.id === 'login' || provider.id === 'register') {
+            if (provider.id === "login" || provider.id === "register") {
               return;
             }
             return (
-              <Box key={provider.name} sx={{ width: '100%' }}>
+              <Box key={provider.name} sx={{ width: "100%" }}>
                 <Divider sx={{ mt: 2 }}>
                   <Typography variant="caption"> Sign up with</Typography>
                 </Divider>
-                {provider.id === 'google' && (
+                {provider.id === "google" && (
                   <Button
                     variant="outlined"
                     color="secondary"
                     fullWidth={!downSM}
-                    startIcon={<Image src={Google} alt="Twitter" width={16} height={16} />}
-                    onClick={() => signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })}
+                    startIcon={
+                      <Image
+                        src={Google}
+                        alt="Twitter"
+                        width={16}
+                        height={16}
+                      />
+                    }
+                    onClick={() =>
+                      signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })
+                    }
                   >
-                    {!downSM && 'Google'}
+                    {!downSM && "Google"}
                   </Button>
                 )}
-                {provider.id === 'auth0' && (
+                {provider.id === "auth0" && (
                   <Button
                     variant="outlined"
                     color="secondary"
                     fullWidth={!downSM}
-                    startIcon={<Image src={Auth0} alt="Twitter" width={16} height={16} />}
-                    onClick={() => signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })}
+                    startIcon={
+                      <Image src={Auth0} alt="Twitter" width={16} height={16} />
+                    }
+                    onClick={() =>
+                      signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })
+                    }
                   >
-                    {!downSM && 'Auth0'}
+                    {!downSM && "Auth0"}
                   </Button>
                 )}
-                {provider.id === 'cognito' && (
+                {provider.id === "cognito" && (
                   <Button
                     variant="outlined"
                     color="secondary"
                     fullWidth={!downSM}
-                    startIcon={<Image src={Cognito} alt="Twitter" width={16} height={16} />}
-                    onClick={() => signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })}
+                    startIcon={
+                      <Image
+                        src={Cognito}
+                        alt="Twitter"
+                        width={16}
+                        height={16}
+                      />
+                    }
+                    onClick={() =>
+                      signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })
+                    }
                   >
-                    {!downSM && 'Cognito'}
+                    {!downSM && "Cognito"}
                   </Button>
                 )}
               </Box>

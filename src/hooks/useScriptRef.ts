@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 // ==============================|| ELEMENT REFERENCE HOOKS ||============================== //
 
@@ -9,7 +9,7 @@ export default function useScriptRef() {
     () => () => {
       scripted.current = false;
     },
-    []
+    [],
   );
 
   return scripted;

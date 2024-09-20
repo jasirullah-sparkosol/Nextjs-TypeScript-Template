@@ -4,16 +4,16 @@ export default function ButtonBase() {
   return {
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: true
+        disableRipple: true,
       },
       styleOverrides: {
         root: {
-          '&.MuiButtonBase-root:disabled': {
-            cursor: 'not-allowed',
-            pointerEvents: 'auto'
-          }
-        }
-      }
-    }
+          "&.MuiButtonBase-root:disabled": {
+            cursor: "not-allowed",
+            pointerEvents: "auto",
+          },
+        },
+      },
+    },
   };
 }

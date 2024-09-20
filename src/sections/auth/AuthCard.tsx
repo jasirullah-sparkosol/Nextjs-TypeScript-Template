@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 // material-ui
-import { Theme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { Theme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 
 // project import
-import MainCard, { MainCardProps } from 'components/MainCard';
+import MainCard, { MainCardProps } from "components/MainCard";
 
 // ==============================|| AUTHENTICATION - CARD WRAPPER ||============================== //
 
@@ -15,7 +15,7 @@ export default function AuthCard({ children, ...other }: MainCardProps) {
       sx={{
         maxWidth: { xs: 400, lg: 475 },
         margin: { xs: 2.5, md: 3 },
-        '& > *': { flexGrow: 1, flexBasis: '50%' }
+        "& > *": { flexGrow: 1, flexBasis: "50%" },
       }}
       content={false}
       {...other}

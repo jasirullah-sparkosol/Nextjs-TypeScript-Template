@@ -1,4 +1,4 @@
-import ContactUS from 'views/contact-us';
+import ContactUS from "views/contact-us";
 
 // ==============================|| PAGE ||============================== //
 

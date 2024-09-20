@@ -67,13 +67,18 @@
     "prettier/prettier": [
       "warn",
       {
-        "bracketSpacing": true,
         "printWidth": 140,
+        "tabWidth": 4,
         "singleQuote": true,
         "trailingComma": "none",
-        "tabWidth": 2,
-        "useTabs": false,
-        "endOfLine": "auto"
+        "jsxSingleQuote": false,
+        "jsxBracketSameLine": true,
+        "semi": true,
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "proseWrap": "preserve",
+        "bracketSameLine": false,
+        "endOfLine": "crlf"
       }
     ]
   },

@@ -1,5 +1,5 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // ==============================|| OVERRIDES - DIALOG CONTENT TEXT ||============================== //
 
@@ -8,9 +8,9 @@ export default function Popover(theme: Theme) {
     MuiPopover: {
       styleOverrides: {
         paper: {
-          boxShadow: theme.customShadows.z1
-        }
-      }
-    }
+          boxShadow: theme.customShadows.z1,
+        },
+      },
+    },
   };
 }

@@ -1,5 +1,5 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // ==============================|| OVERRIDES - LIST ITEM ICON ||============================== //
 
@@ -8,14 +8,14 @@ export default function ListItemButton(theme: Theme) {
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          '&.Mui-selected': {
+          "&.Mui-selected": {
             color: theme.palette.primary.main,
-            '& .MuiListItemIcon-root': {
-              color: theme.palette.primary.main
-            }
-          }
-        }
-      }
-    }
+            "& .MuiListItemIcon-root": {
+              color: theme.palette.primary.main,
+            },
+          },
+        },
+      },
+    },
   };
 }

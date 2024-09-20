@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 // material-ui
-import { ChipProps } from '@mui/material/Chip';
+import { ChipProps } from "@mui/material/Chip";
 
 // project import
-import { GenericCardProps } from './root';
-import { NavActionType } from 'config';
+import { GenericCardProps } from "./root";
+import { NavActionType } from "config";
 
 // ==============================|| MENU TYPES ||============================== //
 
@@ -15,7 +15,7 @@ export type NavActionProps = {
   function?: any;
   url?: string;
   target?: boolean;
-  icon: GenericCardProps['iconPrimary'] | string;
+  icon: GenericCardProps["iconPrimary"] | string;
 };
 
 export type NavItemType = {
@@ -24,11 +24,11 @@ export type NavItemType = {
   children?: NavItemType[];
   elements?: NavItemType[];
   chip?: ChipProps;
-  color?: 'primary' | 'secondary' | 'default' | undefined;
+  color?: "primary" | "secondary" | "default" | undefined;
   disabled?: boolean;
   external?: boolean;
   isDropdown?: boolean;
-  icon?: GenericCardProps['iconPrimary'] | string;
+  icon?: GenericCardProps["iconPrimary"] | string;
   id?: string;
   search?: string;
   target?: boolean;
@@ -38,7 +38,7 @@ export type NavItemType = {
   actions?: NavActionProps[];
 };
 
-export type LinkTarget = '_blank' | '_self' | '_parent' | '_top';
+export type LinkTarget = "_blank" | "_self" | "_parent" | "_top";
 
 export type MenuProps = {
   openedItem: string;

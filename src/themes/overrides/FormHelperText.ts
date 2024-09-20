@@ -6,9 +6,9 @@ export default function FormHelperText() {
       styleOverrides: {
         root: {
           marginTop: 4,
-          marginLeft: 0
-        }
-      }
-    }
+          marginLeft: 0,
+        },
+      },
+    },
   };
 }

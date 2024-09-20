@@ -1,4 +1,4 @@
-import Error404 from 'views/maintenance/404';
+import Error404 from "views/maintenance/404";
 
 // ==============================|| ERROR 404 - MAIN ||============================== //
 

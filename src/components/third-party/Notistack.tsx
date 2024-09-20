@@ -1,48 +1,50 @@
 //material-ui
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 // third-party
-import { SnackbarProvider } from 'notistack';
-import { useSelector } from 'react-redux';
+import { SnackbarProvider } from "notistack";
+import { useSelector } from "react-redux";
 
 // project import
-import Loader from 'components/Loader';
+import Loader from "components/Loader";
 
 // assets
-import CheckCircleOutlined from '@ant-design/icons/CheckCircleOutlined';
-import CloseCircleOutlined from '@ant-design/icons/CloseCircleOutlined';
-import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined';
-import WarningOutlined from '@ant-design/icons/WarningOutlined';
+import CheckCircleOutlined from "@ant-design/icons/CheckCircleOutlined";
+import CloseCircleOutlined from "@ant-design/icons/CloseCircleOutlined";
+import InfoCircleOutlined from "@ant-design/icons/InfoCircleOutlined";
+import WarningOutlined from "@ant-design/icons/WarningOutlined";
 
 // types
-import { RootStateProps } from 'types/root';
-import { SnackbarProps } from 'types/snackbar';
+import { RootStateProps } from "types/root";
+import { SnackbarProps } from "types/snackbar";
 
 // custom styles
 const StyledSnackbarProvider = styled(SnackbarProvider)(({ theme }) => ({
-  '&.notistack-MuiContent-default': {
-    background: theme.palette.primary.main
+  "&.notistack-MuiContent-default": {
+    background: theme.palette.primary.main,
   },
-  '&.notistack-MuiContent-error': {
-    background: theme.palette.error.main
+  "&.notistack-MuiContent-error": {
+    background: theme.palette.error.main,
   },
-  '&.notistack-MuiContent-success': {
-    background: theme.palette.success.main
+  "&.notistack-MuiContent-success": {
+    background: theme.palette.success.main,
   },
-  '&.notistack-MuiContent-info': {
-    background: theme.palette.info.main
+  "&.notistack-MuiContent-info": {
+    background: theme.palette.info.main,
   },
-  '&.notistack-MuiContent-warning': {
-    background: theme.palette.warning.main
-  }
+  "&.notistack-MuiContent-warning": {
+    background: theme.palette.warning.main,
+  },
 }));
 
 // ===========================|| SNACKBAR - NOTISTACK ||=========================== //
 
 export default function Notistack({ children }: any) {
-  const snackbar = useSelector<RootStateProps, SnackbarProps>((state) => state.snackbar);
+  const snackbar = useSelector<RootStateProps, SnackbarProps>(
+    (state) => state.snackbar,
+  );
 
-  const iconSX = { marginRight: 8, fontSize: '1.15rem' };
+  const iconSX = { marginRight: 8, fontSize: "1.15rem" };
 
   if (snackbar === undefined) return <Loader />;
 
@@ -51,16 +53,16 @@ export default function Notistack({ children }: any) {
       maxSnack={snackbar.maxStack}
       dense={snackbar.dense}
       iconVariant={
-        snackbar.iconVariant === 'useemojis'
+        snackbar.iconVariant === "useemojis"
           ? {
               success: <CheckCircleOutlined style={iconSX} />,
               error: <CloseCircleOutlined style={iconSX} />,
               warning: <WarningOutlined style={iconSX} />,
-              info: <InfoCircleOutlined style={iconSX} />
+              info: <InfoCircleOutlined style={iconSX} />,
             }
           : undefined
       }
-      hideIconVariant={snackbar.iconVariant === 'hide' ? true : false}
+      hideIconVariant={snackbar.iconVariant === "hide" ? true : false}
     >
       {children}
     </StyledSnackbarProvider>

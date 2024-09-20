@@ -1,7 +1,7 @@
-import { Middleware } from '@reduxjs/toolkit';
+import { Middleware } from "@reduxjs/toolkit";
 
 // project imports
-import { userApi } from './userApi';
+import { userApi } from "./userApi";
 
 const apiMiddlewares: Middleware[] = [userApi.middleware];
 

@@ -1,7 +1,7 @@
 /* eslint-disable */
 // material-ui
-import { SimplePaletteColorOptions } from '@mui/material/styles';
-import { ColorPartial } from '@mui/material/styles/createPalette';
+import { SimplePaletteColorOptions } from "@mui/material/styles";
+import { ColorPartial } from "@mui/material/styles/createPalette";
 
 // ==============================|| DEFAULT THEME - TYPES ||============================== //
 

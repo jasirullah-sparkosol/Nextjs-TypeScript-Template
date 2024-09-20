@@ -1,11 +1,20 @@
-import { createContext, ReactElement } from 'react';
+import { createContext, ReactElement } from "react";
 
 // project import
-import defaultConfig, { MenuOrientation, ThemeDirection, ThemeMode } from 'config';
-import useLocalStorage from 'hooks/useLocalStorage';
+import defaultConfig, {
+  MenuOrientation,
+  ThemeDirection,
+  ThemeMode,
+} from "config";
+import useLocalStorage from "hooks/useLocalStorage";
 
 // types
-import { CustomizationProps, FontFamily, I18n, PresetColor } from 'types/config';
+import {
+  CustomizationProps,
+  FontFamily,
+  I18n,
+  PresetColor,
+} from "types/config";
 
 // initial state
 const initialState: CustomizationProps = {
@@ -17,7 +26,7 @@ const initialState: CustomizationProps = {
   onChangeDirection: () => {},
   onChangeMiniDrawer: () => {},
   onChangeMenuOrientation: () => {},
-  onChangeFontFamily: () => {}
+  onChangeFontFamily: () => {},
 };
 
 // ==============================|| CONFIG CONTEXT & PROVIDER ||============================== //
@@ -29,61 +38,64 @@ type ConfigProviderProps = {
 };
 
 function ConfigProvider({ children }: ConfigProviderProps) {
-  const [config, setConfig] = useLocalStorage('mantis-react-next-ts-config', initialState);
+  const [config, setConfig] = useLocalStorage(
+    "mantis-react-next-ts-config",
+    initialState,
+  );
 
   const onChangeContainer = () => {
     setConfig({
       ...config,
-      container: !config.container
+      container: !config.container,
     });
   };
 
   const onChangeLocalization = (lang: I18n) => {
     setConfig({
       ...config,
-      i18n: lang
+      i18n: lang,
     });
   };
 
   const onChangeMode = (mode: ThemeMode) => {
     setConfig({
       ...config,
-      mode
+      mode,
     });
   };
 
   const onChangePresetColor = (theme: PresetColor) => {
     setConfig({
       ...config,
-      presetColor: theme
+      presetColor: theme,
     });
   };
 
   const onChangeDirection = (direction: ThemeDirection) => {
     setConfig({
       ...config,
-      themeDirection: direction
+      themeDirection: direction,
     });
   };
 
   const onChangeMiniDrawer = (miniDrawer: boolean) => {
     setConfig({
       ...config,
-      miniDrawer
+      miniDrawer,
     });
   };
 
   const onChangeMenuOrientation = (layout: MenuOrientation) => {
     setConfig({
       ...config,
-      menuOrientation: layout
+      menuOrientation: layout,
     });
   };
 
   const onChangeFontFamily = (fontFamily: FontFamily) => {
     setConfig({
       ...config,
-      fontFamily
+      fontFamily,
     });
   };
 
@@ -98,7 +110,7 @@ function ConfigProvider({ children }: ConfigProviderProps) {
         onChangeDirection,
         onChangeMiniDrawer,
         onChangeMenuOrientation,
-        onChangeFontFamily
+        onChangeFontFamily,
       }}
     >
       {children}

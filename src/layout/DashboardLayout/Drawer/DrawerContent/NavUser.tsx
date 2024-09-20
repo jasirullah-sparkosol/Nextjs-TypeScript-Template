@@ -1,34 +1,34 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent } from "react";
 
 // next
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useSession, signOut } from 'next-auth/react';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 // material-ui
-import { styled, useTheme, Theme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { styled, useTheme, Theme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 // project import
-import Avatar from 'components/@extended/Avatar';
-import useUser from 'hooks/useUser';
+import Avatar from "components/@extended/Avatar";
+import useUser from "hooks/useUser";
 
 // assets
-import RightOutlined from '@ant-design/icons/RightOutlined';
+import RightOutlined from "@ant-design/icons/RightOutlined";
 
 // third-party
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 // types
-import { RootStateProps } from 'types/root';
-import { MenuProps } from 'types/menu';
+import { RootStateProps } from "types/root";
+import { MenuProps } from "types/menu";
 
 interface ExpandMoreProps extends IconButtonProps {
   theme: Theme;
@@ -36,28 +36,31 @@ interface ExpandMoreProps extends IconButtonProps {
   drawerOpen: boolean;
 }
 
-const ExpandMore = styled(IconButton, { shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'expand' && prop !== 'drawerOpen' })(
-  ({ theme, expand, drawerOpen }: ExpandMoreProps) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(-90deg)',
-    marginLeft: 'auto',
-    color: theme.palette.secondary.dark,
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest
-    }),
-    ...(!drawerOpen && {
-      opacity: 0,
-      width: 50,
-      height: 50
-    })
-  })
-);
+const ExpandMore = styled(IconButton, {
+  shouldForwardProp: (prop) =>
+    prop !== "theme" && prop !== "expand" && prop !== "drawerOpen",
+})(({ theme, expand, drawerOpen }: ExpandMoreProps) => ({
+  transform: !expand ? "rotate(0deg)" : "rotate(-90deg)",
+  marginLeft: "auto",
+  color: theme.palette.secondary.dark,
+  transition: theme.transitions.create("transform", {
+    duration: theme.transitions.duration.shortest,
+  }),
+  ...(!drawerOpen && {
+    opacity: 0,
+    width: 50,
+    height: 50,
+  }),
+}));
 
 // ==============================|| LIST - USER ||============================== //
 
 export default function NavUser() {
   const theme = useTheme();
 
-  const menuMaster = useSelector<RootStateProps, MenuProps>((state) => state.menu);
+  const menuMaster = useSelector<RootStateProps, MenuProps>(
+    (state) => state.menu,
+  );
 
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
 
@@ -68,17 +71,21 @@ export default function NavUser() {
 
   const handleLogout = () => {
     switch (provider) {
-      case 'auth0':
-        signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/auth0` });
+      case "auth0":
+        signOut({
+          callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/auth0`,
+        });
         break;
-      case 'cognito':
-        signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/cognito` });
+      case "cognito":
+        signOut({
+          callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/cognito`,
+        });
         break;
       default:
         signOut({ redirect: false });
     }
 
-    router.push('/login');
+    router.push("/login");
   };
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -92,7 +99,14 @@ export default function NavUser() {
   };
 
   return (
-    <Box sx={{ p: 1.25, px: !drawerOpen ? 1.25 : 3, borderTop: '2px solid', borderTopColor: 'divider' }}>
+    <Box
+      sx={{
+        p: 1.25,
+        px: !drawerOpen ? 1.25 : 3,
+        borderTop: "2px solid",
+        borderTopColor: "divider",
+      }}
+    >
       <List disablePadding>
         <ListItem
           disablePadding
@@ -102,21 +116,33 @@ export default function NavUser() {
               expand={open}
               drawerOpen={drawerOpen}
               id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
+              aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
+              aria-expanded={open ? "true" : undefined}
               onClick={handleClick}
               aria-label="show more"
             >
-              <RightOutlined style={{ fontSize: '0.625rem' }} />
+              <RightOutlined style={{ fontSize: "0.625rem" }} />
             </ExpandMore>
           }
-          sx={{ '& .MuiListItemSecondaryAction-root': { right: !drawerOpen ? -20 : -16 } }}
+          sx={{
+            "& .MuiListItemSecondaryAction-root": {
+              right: !drawerOpen ? -20 : -16,
+            },
+          }}
         >
           <ListItemAvatar>
-            {user && <Avatar alt="Avatar" src={user.avatar} sx={{ ...(drawerOpen && { width: 46, height: 46 }) }} />}
+            {user && (
+              <Avatar
+                alt="Avatar"
+                src={user.avatar}
+                sx={{ ...(drawerOpen && { width: 46, height: 46 }) }}
+              />
+            )}
           </ListItemAvatar>
-          {user && <ListItemText primary={user.name} secondary="UI/UX Designer" />}
+          {user && (
+            <ListItemText primary={user.name} secondary="UI/UX Designer" />
+          )}
         </ListItem>
       </List>
       <Menu
@@ -125,22 +151,30 @@ export default function NavUser() {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button'
+          "aria-labelledby": "basic-button",
         }}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right'
+          vertical: "top",
+          horizontal: "right",
         }}
         transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right'
+          vertical: "bottom",
+          horizontal: "right",
         }}
       >
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        <MenuItem component={Link} href="/apps/profiles/user/personal" onClick={handleClose}>
+        <MenuItem
+          component={Link}
+          href="/apps/profiles/user/personal"
+          onClick={handleClose}
+        >
           Profile
         </MenuItem>
-        <MenuItem component={Link} href="/apps/profiles/account/basic" onClick={handleClose}>
+        <MenuItem
+          component={Link}
+          href="/apps/profiles/account/basic"
+          onClick={handleClose}
+        >
           My account
         </MenuItem>
       </Menu>

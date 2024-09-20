@@ -5,14 +5,14 @@ export default function TreeItem() {
     MuiTreeItem: {
       styleOverrides: {
         content: {
-          padding: 8
+          padding: 8,
         },
         iconContainer: {
-          '& svg': {
-            fontSize: '0.625rem'
-          }
-        }
-      }
-    }
+          "& svg": {
+            fontSize: "0.625rem",
+          },
+        },
+      },
+    },
   };
 }

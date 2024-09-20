@@ -1,12 +1,12 @@
-import { ComponentClass, FunctionComponent } from 'react';
+import { ComponentClass, FunctionComponent } from "react";
 
 // material-ui
-import { SvgIconTypeMap } from '@mui/material/SvgIcon';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap } from "@mui/material/SvgIcon";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 
 // types
-import { MenuProps } from './menu';
-import { SnackbarProps } from './snackbar';
+import { MenuProps } from "./menu";
+import { SnackbarProps } from "./snackbar";
 
 // ==============================|| ROOT TYPES ||============================== //
 
@@ -20,7 +20,7 @@ export type KeyedObject = {
 };
 
 export type OverrideIcon =
-  | (OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
+  | (OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
       muiName: string;
     })
   | ComponentClass<any>

@@ -1,11 +1,11 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // project import
-import getColors from 'utils/getColors';
+import getColors from "utils/getColors";
 
 // types
-import { ExtendedStyleProps } from 'types/extended';
+import { ExtendedStyleProps } from "types/extended";
 
 // ==============================|| BADGE - COLORS ||============================== //
 
@@ -15,14 +15,14 @@ function getColorStyle({ color, theme }: ExtendedStyleProps) {
 
   return {
     color: main,
-    backgroundColor: lighter
+    backgroundColor: lighter,
   };
 }
 
 // ==============================|| OVERRIDES - BADGE ||============================== //
 
 export default function Badge(theme: Theme) {
-  const defaultLightBadge = getColorStyle({ color: 'primary', theme });
+  const defaultLightBadge = getColorStyle({ color: "primary", theme });
 
   return {
     MuiBadge: {
@@ -30,18 +30,21 @@ export default function Badge(theme: Theme) {
         standard: {
           minWidth: theme.spacing(2),
           height: theme.spacing(2),
-          padding: theme.spacing(0.5)
+          padding: theme.spacing(0.5),
         },
         light: {
           ...defaultLightBadge,
-          '&.MuiBadge-colorPrimary': getColorStyle({ color: 'primary', theme }),
-          '&.MuiBadge-colorSecondary': getColorStyle({ color: 'secondary', theme }),
-          '&.MuiBadge-colorError': getColorStyle({ color: 'error', theme }),
-          '&.MuiBadge-colorInfo': getColorStyle({ color: 'info', theme }),
-          '&.MuiBadge-colorSuccess': getColorStyle({ color: 'success', theme }),
-          '&.MuiBadge-colorWarning': getColorStyle({ color: 'warning', theme })
-        }
-      }
-    }
+          "&.MuiBadge-colorPrimary": getColorStyle({ color: "primary", theme }),
+          "&.MuiBadge-colorSecondary": getColorStyle({
+            color: "secondary",
+            theme,
+          }),
+          "&.MuiBadge-colorError": getColorStyle({ color: "error", theme }),
+          "&.MuiBadge-colorInfo": getColorStyle({ color: "info", theme }),
+          "&.MuiBadge-colorSuccess": getColorStyle({ color: "success", theme }),
+          "&.MuiBadge-colorWarning": getColorStyle({ color: "warning", theme }),
+        },
+      },
+    },
   };
 }

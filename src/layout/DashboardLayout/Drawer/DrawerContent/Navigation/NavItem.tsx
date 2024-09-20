@@ -1,34 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 // next
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 
 // project import
-import Dot from 'components/@extended/Dot';
-import IconButton from 'components/@extended/IconButton';
-import { handlerActiveItem, handlerDrawerOpen, handlerHorizontalActiveItem } from 'store/reducers/menu';
+import Dot from "components/@extended/Dot";
+import IconButton from "components/@extended/IconButton";
+import {
+  handlerActiveItem,
+  handlerDrawerOpen,
+  handlerHorizontalActiveItem,
+} from "store/reducers/menu";
 
-import { MenuOrientation, ThemeMode, NavActionType } from 'config';
-import useConfig from 'hooks/useConfig';
+import { MenuOrientation, ThemeMode, NavActionType } from "config";
+import useConfig from "hooks/useConfig";
 
 // types
-import { LinkTarget, MenuProps, NavItemType } from 'types/menu';
-import { RootStateProps } from 'types/root';
+import { LinkTarget, MenuProps, NavItemType } from "types/menu";
+import { RootStateProps } from "types/root";
 
 // third-party
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 // ==============================|| NAVIGATION - LIST ITEM ||============================== //
 
@@ -42,25 +46,28 @@ export default function NavItem({ item, level, isParents = false }: Props) {
   const dispatch = useDispatch();
   const theme = useTheme();
 
-  const menuMaster = useSelector<RootStateProps, MenuProps>((state) => state.menu);
+  const menuMaster = useSelector<RootStateProps, MenuProps>(
+    (state) => state.menu,
+  );
 
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
   const openItem = menuMaster.openedItem;
 
-  const downLG = useMediaQuery(theme.breakpoints.down('lg'));
+  const downLG = useMediaQuery(theme.breakpoints.down("lg"));
 
   const { mode, menuOrientation } = useConfig();
-  let itemTarget: LinkTarget = '_self';
+  let itemTarget: LinkTarget = "_self";
   if (item.target) {
-    itemTarget = '_blank';
+    itemTarget = "_blank";
   }
 
   const Icon = item.icon!;
   const itemIcon = item.icon ? (
     <Icon
       style={{
-        fontSize: drawerOpen ? '1rem' : '1.25rem',
-        ...(menuOrientation === MenuOrientation.HORIZONTAL && isParents && { fontSize: 20, stroke: '1.5' })
+        fontSize: drawerOpen ? "1rem" : "1.25rem",
+        ...(menuOrientation === MenuOrientation.HORIZONTAL &&
+          isParents && { fontSize: 20, stroke: "1.5" }),
       }}
     />
   ) : (
@@ -77,13 +84,14 @@ export default function NavItem({ item, level, isParents = false }: Props) {
     // eslint-disable-next-line
   }, [pathname]);
 
-  const textColor = mode === ThemeMode.DARK ? 'grey.400' : 'text.primary';
-  const iconSelectedColor = mode === ThemeMode.DARK && drawerOpen ? 'text.primary' : 'primary.main';
+  const textColor = mode === ThemeMode.DARK ? "grey.400" : "text.primary";
+  const iconSelectedColor =
+    mode === ThemeMode.DARK && drawerOpen ? "text.primary" : "primary.main";
 
   return (
     <>
       {menuOrientation === MenuOrientation.VERTICAL || downLG ? (
-        <Box sx={{ position: 'relative' }}>
+        <Box sx={{ position: "relative" }}>
           <ListItemButton
             component={Link}
             href={item.url!}
@@ -95,34 +103,37 @@ export default function NavItem({ item, level, isParents = false }: Props) {
               pl: drawerOpen ? `${level * 28}px` : 1.5,
               py: !drawerOpen && level === 1 ? 1.25 : 1,
               ...(drawerOpen && {
-                '&:hover': {
-                  bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter'
+                "&:hover": {
+                  bgcolor:
+                    mode === ThemeMode.DARK ? "divider" : "primary.lighter",
                 },
-                '&.Mui-selected': {
-                  bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter',
-                  borderRight: '2px solid',
-                  borderRightColor: 'primary.main',
+                "&.Mui-selected": {
+                  bgcolor:
+                    mode === ThemeMode.DARK ? "divider" : "primary.lighter",
+                  borderRight: "2px solid",
+                  borderRightColor: "primary.main",
                   color: iconSelectedColor,
-                  '&:hover': {
+                  "&:hover": {
                     color: iconSelectedColor,
-                    bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter'
-                  }
-                }
+                    bgcolor:
+                      mode === ThemeMode.DARK ? "divider" : "primary.lighter",
+                  },
+                },
               }),
               ...(!drawerOpen && {
-                '&:hover': {
-                  bgcolor: 'transparent'
+                "&:hover": {
+                  bgcolor: "transparent",
                 },
-                '&.Mui-selected': {
-                  '&:hover': {
-                    bgcolor: 'transparent'
+                "&.Mui-selected": {
+                  "&:hover": {
+                    bgcolor: "transparent",
                   },
-                  bgcolor: 'transparent'
-                }
-              })
+                  bgcolor: "transparent",
+                },
+              }),
             }}
             {...(downLG && {
-              onClick: () => dispatch(handlerDrawerOpen(false))
+              onClick: () => dispatch(handlerDrawerOpen(false)),
             })}
           >
             {itemIcon && (
@@ -134,19 +145,28 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                     borderRadius: 1.5,
                     width: 36,
                     height: 36,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    '&:hover': {
-                      bgcolor: mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.lighter'
-                    }
+                    alignItems: "center",
+                    justifyContent: "center",
+                    "&:hover": {
+                      bgcolor:
+                        mode === ThemeMode.DARK
+                          ? "secondary.light"
+                          : "secondary.lighter",
+                    },
                   }),
                   ...(!drawerOpen &&
                     isSelected && {
-                      bgcolor: mode === ThemeMode.DARK ? 'primary.900' : 'primary.lighter',
-                      '&:hover': {
-                        bgcolor: mode === ThemeMode.DARK ? 'primary.darker' : 'primary.lighter'
-                      }
-                    })
+                      bgcolor:
+                        mode === ThemeMode.DARK
+                          ? "primary.900"
+                          : "primary.lighter",
+                      "&:hover": {
+                        bgcolor:
+                          mode === ThemeMode.DARK
+                            ? "primary.darker"
+                            : "primary.lighter",
+                      },
+                    }),
                 }}
               >
                 {itemIcon}
@@ -155,7 +175,10 @@ export default function NavItem({ item, level, isParents = false }: Props) {
             {(drawerOpen || (!drawerOpen && level !== 1)) && (
               <ListItemText
                 primary={
-                  <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ color: isSelected ? iconSelectedColor : textColor }}
+                  >
                     {item.title}
                   </Typography>
                 }
@@ -183,17 +206,17 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                     onClick: (event) => {
                       event.stopPropagation();
                       callAction();
-                    }
+                    },
                   })}
                   {...(action.type === NavActionType.LINK && {
                     component: Link,
                     href: action.url,
-                    target: action.target ? '_blank' : '_self'
+                    target: action.target ? "_blank" : "_self",
                   })}
                   color="secondary"
                   variant="outlined"
                   sx={{
-                    position: 'absolute',
+                    position: "absolute",
                     top: 12,
                     right: 20,
                     zIndex: 1202,
@@ -201,12 +224,18 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                     height: 20,
                     mr: -1,
                     ml: 1,
-                    color: 'secondary.dark',
-                    borderColor: isSelected ? 'primary.light' : 'secondary.light',
-                    '&:hover': { borderColor: isSelected ? 'primary.main' : 'secondary.main' }
+                    color: "secondary.dark",
+                    borderColor: isSelected
+                      ? "primary.light"
+                      : "secondary.light",
+                    "&:hover": {
+                      borderColor: isSelected
+                        ? "primary.main"
+                        : "secondary.main",
+                    },
                   }}
                 >
-                  <ActionIcon style={{ fontSize: '0.625rem' }} />
+                  <ActionIcon style={{ fontSize: "0.625rem" }} />
                 </IconButton>
               );
             })}
@@ -221,23 +250,23 @@ export default function NavItem({ item, level, isParents = false }: Props) {
           {...(isParents && {
             onClick: () => {
               dispatch(handlerHorizontalActiveItem(item.id!));
-            }
+            },
           })}
           sx={{
             zIndex: 1201,
-            '&:hover': {
-              bgcolor: 'transparent'
+            "&:hover": {
+              bgcolor: "transparent",
             },
             ...(isParents && {
               p: 1,
-              mr: 1
+              mr: 1,
             }),
-            '&.Mui-selected': {
-              bgcolor: 'transparent',
-              '&:hover': {
-                bgcolor: 'transparent'
-              }
-            }
+            "&.Mui-selected": {
+              bgcolor: "transparent",
+              "&:hover": {
+                bgcolor: "transparent",
+              },
+            },
           }}
         >
           {itemIcon && (
@@ -248,19 +277,19 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                   borderRadius: 1.5,
                   width: 28,
                   height: 28,
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  '&:hover': {
-                    bgcolor: 'transparent'
-                  }
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  "&:hover": {
+                    bgcolor: "transparent",
+                  },
                 }),
                 ...(!drawerOpen &&
                   isSelected && {
-                    bgcolor: 'transparent',
-                    '&:hover': {
-                      bgcolor: 'transparent'
-                    }
-                  })
+                    bgcolor: "transparent",
+                    "&:hover": {
+                      bgcolor: "transparent",
+                    },
+                  }),
               }}
             >
               {itemIcon}
@@ -270,30 +299,33 @@ export default function NavItem({ item, level, isParents = false }: Props) {
           {!itemIcon && (
             <ListItemIcon
               sx={{
-                color: isSelected ? 'primary.main' : 'secondary.dark',
+                color: isSelected ? "primary.main" : "secondary.dark",
                 ...(!drawerOpen && {
                   borderRadius: 1.5,
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  '&:hover': {
-                    bgcolor: 'transparent'
-                  }
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  "&:hover": {
+                    bgcolor: "transparent",
+                  },
                 }),
                 ...(!drawerOpen &&
                   isSelected && {
-                    bgcolor: 'transparent',
-                    '&:hover': {
-                      bgcolor: 'transparent'
-                    }
-                  })
+                    bgcolor: "transparent",
+                    "&:hover": {
+                      bgcolor: "transparent",
+                    },
+                  }),
               }}
             >
-              <Dot size={4} color={isSelected ? 'primary' : 'secondary'} />
+              <Dot size={4} color={isSelected ? "primary" : "secondary"} />
             </ListItemIcon>
           )}
           <ListItemText
             primary={
-              <Typography variant="h6" color={isSelected ? 'primary.main' : 'secondary.dark'}>
+              <Typography
+                variant="h6"
+                color={isSelected ? "primary.main" : "secondary.dark"}
+              >
                 {item.title}
               </Typography>
             }

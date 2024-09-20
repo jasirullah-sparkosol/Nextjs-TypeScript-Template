@@ -1,7 +1,7 @@
 /* eslint-disable */
-import * as Pagination from '@mui/material/Pagination';
+import * as Pagination from "@mui/material/Pagination";
 
-declare module '@mui/material/Pagination' {
+declare module "@mui/material/Pagination" {
   interface PaginationPropsColorOverrides {
     error;
     success;

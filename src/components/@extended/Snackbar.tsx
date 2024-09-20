@@ -1,26 +1,26 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent } from "react";
 
 // material-ui
-import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import Fade from '@mui/material/Fade';
-import Grow from '@mui/material/Grow';
-import Slide, { SlideProps } from '@mui/material/Slide';
-import MuiSnackbar from '@mui/material/Snackbar';
+import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
+import Grow from "@mui/material/Grow";
+import Slide, { SlideProps } from "@mui/material/Slide";
+import MuiSnackbar from "@mui/material/Snackbar";
 
 // third party
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 // project import
-import IconButton from './IconButton';
-import { closeSnackbar } from 'store/reducers/snackbar';
+import IconButton from "./IconButton";
+import { closeSnackbar } from "store/reducers/snackbar";
 
 // assets
-import CloseOutlined from '@ant-design/icons/CloseOutlined';
+import CloseOutlined from "@ant-design/icons/CloseOutlined";
 
 // types
-import { KeyedObject, RootStateProps } from 'types/root';
-import { SnackbarProps } from 'types/snackbar';
+import { KeyedObject, RootStateProps } from "types/root";
+import { SnackbarProps } from "types/snackbar";
 
 // animation function
 function TransitionSlideLeft(props: SlideProps) {
@@ -50,17 +50,19 @@ const animation: KeyedObject = {
   SlideRight: TransitionSlideRight,
   SlideDown: TransitionSlideDown,
   Grow: GrowTransition,
-  Fade
+  Fade,
 };
 
 // ==============================|| SNACKBAR ||============================== //
 
 export default function Snackbar() {
   const dispatch = useDispatch();
-  const snackbar = useSelector<RootStateProps, SnackbarProps>((state) => state.snackbar);
+  const snackbar = useSelector<RootStateProps, SnackbarProps>(
+    (state) => state.snackbar,
+  );
 
   const handleClose = (event: SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     dispatch(closeSnackbar());
@@ -69,7 +71,7 @@ export default function Snackbar() {
   return (
     <>
       {/* default snackbar */}
-      {snackbar.variant === 'default' && (
+      {snackbar.variant === "default" && (
         <MuiSnackbar
           anchorOrigin={snackbar.anchorOrigin}
           open={snackbar.open}
@@ -82,7 +84,13 @@ export default function Snackbar() {
               <Button color="secondary" size="small" onClick={handleClose}>
                 UNDO
               </Button>
-              <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose} sx={{ mt: 0.25 }}>
+              <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+                sx={{ mt: 0.25 }}
+              >
                 <CloseOutlined />
               </IconButton>
             </>
@@ -91,7 +99,7 @@ export default function Snackbar() {
       )}
 
       {/* alert snackbar */}
-      {snackbar.variant === 'alert' && (
+      {snackbar.variant === "alert" && (
         <MuiSnackbar
           TransitionComponent={animation[snackbar.transition]}
           anchorOrigin={snackbar.anchorOrigin}
@@ -105,7 +113,11 @@ export default function Snackbar() {
             action={
               <>
                 {snackbar.actionButton !== false && (
-                  <Button color={snackbar.alert.color} size="small" onClick={handleClose}>
+                  <Button
+                    color={snackbar.alert.color}
+                    size="small"
+                    onClick={handleClose}
+                  >
                     UNDO
                   </Button>
                 )}
@@ -124,9 +136,9 @@ export default function Snackbar() {
               </>
             }
             sx={{
-              ...(snackbar.alert.variant === 'outlined' && {
-                bgcolor: 'grey.0'
-              })
+              ...(snackbar.alert.variant === "outlined" && {
+                bgcolor: "grey.0",
+              }),
             }}
           >
             {snackbar.message}

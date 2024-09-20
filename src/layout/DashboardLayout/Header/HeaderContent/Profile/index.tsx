@@ -1,39 +1,39 @@
-import { useRef, useState, ReactNode, SyntheticEvent } from 'react';
+import { useRef, useState, ReactNode, SyntheticEvent } from "react";
 
 // next
-import { useRouter } from 'next/navigation';
-import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
-import CardContent from '@mui/material/CardContent';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import ButtonBase from "@mui/material/ButtonBase";
+import CardContent from "@mui/material/CardContent";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import Stack from "@mui/material/Stack";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 
 // project import
-import ProfileTab from './ProfileTab';
-import SettingTab from './SettingTab';
-import Avatar from 'components/@extended/Avatar';
-import MainCard from 'components/MainCard';
-import Transitions from 'components/@extended/Transitions';
-import IconButton from 'components/@extended/IconButton';
+import ProfileTab from "./ProfileTab";
+import SettingTab from "./SettingTab";
+import Avatar from "components/@extended/Avatar";
+import MainCard from "components/MainCard";
+import Transitions from "components/@extended/Transitions";
+import IconButton from "components/@extended/IconButton";
 
-import { ThemeMode } from 'config';
-import useUser from 'hooks/useUser';
+import { ThemeMode } from "config";
+import useUser from "hooks/useUser";
 
 // assets
-import LogoutOutlined from '@ant-design/icons/LogoutOutlined';
-import SettingOutlined from '@ant-design/icons/SettingOutlined';
-import UserOutlined from '@ant-design/icons/UserOutlined';
+import LogoutOutlined from "@ant-design/icons/LogoutOutlined";
+import SettingOutlined from "@ant-design/icons/SettingOutlined";
+import UserOutlined from "@ant-design/icons/UserOutlined";
 
 // types
 interface TabPanelProps {
@@ -46,7 +46,13 @@ interface TabPanelProps {
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
-    <div role="tabpanel" hidden={value !== index} id={`profile-tabpanel-${index}`} aria-labelledby={`profile-tab-${index}`} {...other}>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`profile-tabpanel-${index}`}
+      aria-labelledby={`profile-tab-${index}`}
+      {...other}
+    >
       {value === index && children}
     </div>
   );
@@ -55,7 +61,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `profile-tab-${index}`,
-    'aria-controls': `profile-tabpanel-${index}`
+    "aria-controls": `profile-tabpanel-${index}`,
   };
 }
 
@@ -70,17 +76,21 @@ export default function Profile() {
 
   const handleLogout = () => {
     switch (provider) {
-      case 'auth0':
-        signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/auth0` });
+      case "auth0":
+        signOut({
+          callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/auth0`,
+        });
         break;
-      case 'cognito':
-        signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/cognito` });
+      case "cognito":
+        signOut({
+          callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/logout/cognito`,
+        });
         break;
       default:
         signOut({ redirect: false });
     }
 
-    router.push('/login');
+    router.push("/login");
   };
 
   const anchorRef = useRef<any>(null);
@@ -102,31 +112,45 @@ export default function Profile() {
     setValue(newValue);
   };
 
-  const iconBackColorOpen = theme.palette.mode === ThemeMode.DARK ? 'background.default' : 'grey.100';
+  const iconBackColorOpen =
+    theme.palette.mode === ThemeMode.DARK ? "background.default" : "grey.100";
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <ButtonBase
         sx={{
           p: 0.25,
-          bgcolor: open ? iconBackColorOpen : 'transparent',
+          bgcolor: open ? iconBackColorOpen : "transparent",
           borderRadius: 1,
-          '&:hover': { bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.lighter' },
-          '&:focus-visible': {
+          "&:hover": {
+            bgcolor:
+              theme.palette.mode === ThemeMode.DARK
+                ? "secondary.light"
+                : "secondary.lighter",
+          },
+          "&:focus-visible": {
             outline: `2px solid ${theme.palette.secondary.dark}`,
-            outlineOffset: 2
-          }
+            outlineOffset: 2,
+          },
         }}
         aria-label="open profile"
         ref={anchorRef}
-        aria-controls={open ? 'profile-grow' : undefined}
+        aria-controls={open ? "profile-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
         {user && (
-          <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
+          <Stack
+            direction="row"
+            spacing={1.25}
+            alignItems="center"
+            sx={{ p: 0.5 }}
+          >
             <Avatar alt={user.name} src={user.avatar} size="sm" />
-            <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textTransform: "capitalize" }}
+            >
               {user.name && user.name}
             </Typography>
           </Stack>
@@ -142,12 +166,12 @@ export default function Profile() {
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
-                offset: [0, 9]
-              }
-            }
-          ]
+                offset: [0, 9],
+              },
+            },
+          ],
         }}
       >
         {({ TransitionProps }) => (
@@ -157,20 +181,31 @@ export default function Profile() {
                 boxShadow: theme.customShadows.z1,
                 width: 290,
                 minWidth: 240,
-                maxWidth: { xs: 250, md: 290 }
+                maxWidth: { xs: 250, md: 290 },
               }}
             >
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard elevation={0} border={false} content={false}>
                   <CardContent sx={{ px: 2.5, pt: 3 }}>
-                    <Grid container justifyContent="space-between" alignItems="center">
+                    <Grid
+                      container
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
                       <Grid item>
                         {user && (
-                          <Stack direction="row" spacing={1.25} alignItems="center">
+                          <Stack
+                            direction="row"
+                            spacing={1.25}
+                            alignItems="center"
+                          >
                             <Avatar alt={user.name} src={user.avatar} />
                             <Stack>
                               <Typography variant="h6">{user.name}</Typography>
-                              <Typography variant="body2" color="text.secondary">
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                              >
                                 UI/UX Designer
                               </Typography>
                             </Stack>
@@ -179,7 +214,11 @@ export default function Profile() {
                       </Grid>
                       <Grid item>
                         <Tooltip title="Logout">
-                          <IconButton size="large" sx={{ color: 'text.primary' }} onClick={handleLogout}>
+                          <IconButton
+                            size="large"
+                            sx={{ color: "text.primary" }}
+                            onClick={handleLogout}
+                          >
                             <LogoutOutlined />
                           </IconButton>
                         </Tooltip>
@@ -188,29 +227,42 @@ export default function Profile() {
                   </CardContent>
                   {open && (
                     <>
-                      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <Tabs variant="fullWidth" value={value} onChange={handleChange} aria-label="profile tabs">
+                      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <Tabs
+                          variant="fullWidth"
+                          value={value}
+                          onChange={handleChange}
+                          aria-label="profile tabs"
+                        >
                           <Tab
                             sx={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              textTransform: 'capitalize'
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              textTransform: "capitalize",
                             }}
-                            icon={<UserOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
+                            icon={
+                              <UserOutlined
+                                style={{ marginBottom: 0, marginRight: "10px" }}
+                              />
+                            }
                             label="Profile"
                             {...a11yProps(0)}
                           />
                           <Tab
                             sx={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              textTransform: 'capitalize'
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              textTransform: "capitalize",
                             }}
-                            icon={<SettingOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
+                            icon={
+                              <SettingOutlined
+                                style={{ marginBottom: 0, marginRight: "10px" }}
+                              />
+                            }
                             label="Setting"
                             {...a11yProps(1)}
                           />

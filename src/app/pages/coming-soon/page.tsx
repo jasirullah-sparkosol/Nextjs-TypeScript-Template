@@ -1,4 +1,4 @@
-import ComingSoon from 'views/maintenance/coming-soon';
+import ComingSoon from "views/maintenance/coming-soon";
 
 // ==============================|| PAGE ||============================== //
 

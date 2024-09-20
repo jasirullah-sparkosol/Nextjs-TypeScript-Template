@@ -1,4 +1,4 @@
-import CheckMail from 'views/auth/check-mail';
+import CheckMail from "views/auth/check-mail";
 
 // ==============================|| PAGE ||============================== //
 
