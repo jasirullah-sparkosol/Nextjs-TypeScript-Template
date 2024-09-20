@@ -20,17 +20,18 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 // types
+import Image from 'next/image';
 import { SnackbarProps } from 'types/snackbar';
 import { Gift } from 'types/api/gift';
 import { dispatch } from 'store';
 import Typography from '@mui/material/Typography';
 import { FormLabel } from '@mui/material';
-// import Avatar from '@mui/material/Avatar';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { usePostSaveFileMutation } from 'api/services/fileApi';
 import { useLazyGetGiftQuery, usePostGiftMutation, useUpdateGiftMutation } from 'api/services/giftApi';
 import { getFullImagePath } from 'utils/imageUtils';
 import { FormikHelpers } from 'formik/dist/types';
+import Loader from 'components/Loader';
 
 interface FormProps {
     id?: string;
@@ -53,10 +54,10 @@ export default function Form({ id }: FormProps) {
     const [postSaveFile] = usePostSaveFileMutation();
     const [postGift] = usePostGiftMutation();
     const [updateGift] = useUpdateGiftMutation();
-    const [refetch, { data: gift }] = useLazyGetGiftQuery();
+    const [refetch, { data: gift, isLoading }] = useLazyGetGiftQuery();
 
     const [selectedImage, setSelectedImage] = useState<File | undefined>(undefined);
-    const [avatar, setAvatar] = useState<string | undefined>('/assets/images/users/default.png');
+    const [imageUrl, setImageUrl] = useState<string>('/assets/images/users/default.png');
 
     const onSubmit = async (values: Gift, { setFieldValue }: FormikHelpers<Gift>) => {
         let image = values.image;
@@ -105,7 +106,7 @@ export default function Form({ id }: FormProps) {
 
     useEffect(() => {
         if (selectedImage) {
-            setAvatar(URL.createObjectURL(selectedImage));
+            setImageUrl(URL.createObjectURL(selectedImage));
         }
     }, [selectedImage]);
 
@@ -115,7 +116,7 @@ export default function Form({ id }: FormProps) {
             formik.setValues(gift);
 
             if (gift.image) {
-                setAvatar(getFullImagePath(gift.image));
+                setImageUrl(getFullImagePath(gift.image));
             }
         }
     }, [gift]);
@@ -125,6 +126,10 @@ export default function Form({ id }: FormProps) {
             refetch(id);
         }
     }, [id]);
+
+    if (isLoading) {
+        return <Loader />;
+    }
 
     return (
         <MainCard>
@@ -140,13 +145,14 @@ export default function Form({ id }: FormProps) {
                                     '&:hover .MuiBox-root': { opacity: 1 },
                                     cursor: 'pointer'
                                 }}>
-                                <img
-                                    src={avatar}
-                                    style={{ width: '250px', height: '250px', objectFit: 'contain' }}
-                                    loading="lazy"
+                                <Image
+                                    src={imageUrl}
+                                    width={200}
+                                    height={200}
+                                    style={{ objectFit: 'contain', border: '1px solid #d4d4d8' }}
+                                    priority
                                     alt="gift-image"
                                 />
-                                {/*<Avatar alt="Avatar 1" src={avatar} sx={{ width: 76, height: 76 }} />*/}
                                 <Box
                                     sx={{
                                         position: 'absolute',

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import DataTable from 'components/DataTable';
 import { ColumnDef } from '@tanstack/react-table';
 import Stack from '@mui/material/Stack';
@@ -16,10 +16,13 @@ import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 import { dispatch } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
 import { SnackbarProps } from 'types/snackbar';
+import Loader from '../../../components/Loader';
 
 export default function ListView() {
     const router = useRouter();
-    const { data, refetch } = useGetGiftsQuery();
+    const { data, refetch, isLoading } = useGetGiftsQuery(null, {
+        refetchOnMountOrArgChange: true
+    });
     const [deleteGift] = useDeleteGiftMutation();
 
     const getAvatar = (item: Gift) => {
@@ -49,10 +52,6 @@ export default function ListView() {
             );
         }
     };
-
-    useEffect(() => {
-        refetch();
-    }, []);
 
     const columns = useMemo<ColumnDef<Gift>[]>(
         () => [
@@ -96,6 +95,10 @@ export default function ListView() {
         ],
         []
     );
+
+    if (isLoading) {
+        return <Loader />;
+    }
 
     return (
         <>

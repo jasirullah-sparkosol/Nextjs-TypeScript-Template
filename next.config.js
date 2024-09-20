@@ -5,14 +5,20 @@ const NODE_ENV = process.env.NODE_ENV;
 const nextConfig = {
     modularizeImports: {
         '@mui/material': {
-            transform: '@mui/material/{{member}}',
+            transform: '@mui/material/{{member}}'
         }, '@mui/lab': {
-            transform: '@mui/lab/{{member}}',
-        },
+            transform: '@mui/lab/{{member}}'
+        }
     }, images: {
-        remotePatterns: [{
-            protocol: 'https', hostname: 'flagcdn.com', pathname: '**',
-        }],
+        remotePatterns: [
+            {
+                protocol: 'https', hostname: 'flagcdn.com', pathname: '**'
+            }, {
+                protocol: 'https',
+                hostname: 'superior-rewards-backend-170522911236.asia-south1.run.app',
+                pathname: '**'
+            }
+        ]
     }, env: {
         // Version
         NEXT_APP_VERSION: process.env.REACT_APP_VERSION,
@@ -28,8 +34,8 @@ const nextConfig = {
 
         // JWT
         NEXT_APP_JWT_SECRET: process.env.REACT_APP_JWT_SECRET,
-        NEXT_APP_JWT_TIMEOUT: process.env.REACT_APP_JWT_TIMEOUT,
-    },
+        NEXT_APP_JWT_TIMEOUT: process.env.REACT_APP_JWT_TIMEOUT
+    }
 };
 
 module.exports = nextConfig;

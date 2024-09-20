@@ -18,7 +18,7 @@ export const GiftApi = createApi({
         }),
 
         // Get all gifts
-        getGifts: builder.query<Gift[], void>({
+        getGifts: builder.query<Gift[], any>({
             query: () => API_ROUTES.gift.list
         }),
 
