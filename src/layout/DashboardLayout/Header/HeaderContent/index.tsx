@@ -4,17 +4,17 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 
 // project import
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 import Search from './Search';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 import Message from './Message';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 import Profile from './Profile';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 import FullScreen from './FullScreen';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 import Notification from './Notification';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 import MobileSection from './MobileSection';
 
 import { MenuOrientation } from 'config';

@@ -7,7 +7,9 @@ import { signIn } from 'next-auth/react';
 
 // material-ui
 import Button from '@mui/material/Button';
+// @ts-ignore
 import Checkbox from '@mui/material/Checkbox';
+// @ts-ignore
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Grid from '@mui/material/Grid';
@@ -54,6 +56,7 @@ export default function AuthLogin({ providers, csrfToken }: any) {
         }
     }, [params]);
 
+    // @ts-ignore
     const [checked, setChecked] = useState(false);
     const [capsWarning, setCapsWarning] = useState(false);
 
@@ -179,22 +182,22 @@ export default function AuthLogin({ providers, csrfToken }: any) {
                                 )}
                             </Grid>
 
-                            <Grid item xs={12} sx={{ mt: -1 }}>
-                                <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={checked}
-                                                onChange={(event) => setChecked(event.target.checked)}
-                                                name="checked"
-                                                color="primary"
-                                                size="small"
-                                            />
-                                        }
-                                        label={<Typography variant="h6">Keep me sign in</Typography>}
-                                    />
-                                </Stack>
-                            </Grid>
+                            {/*<Grid item xs={12} sx={{ mt: -1 }}>*/}
+                            {/*    <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>*/}
+                            {/*        <FormControlLabel*/}
+                            {/*            control={*/}
+                            {/*                <Checkbox*/}
+                            {/*                    checked={checked}*/}
+                            {/*                    onChange={(event) => setChecked(event.target.checked)}*/}
+                            {/*                    name="checked"*/}
+                            {/*                    color="primary"*/}
+                            {/*                    size="small"*/}
+                            {/*                />*/}
+                            {/*            }*/}
+                            {/*            label={<Typography variant="h6">Keep me sign in</Typography>}*/}
+                            {/*        />*/}
+                            {/*    </Stack>*/}
+                            {/*</Grid>*/}
                             {errors.submit && (
                                 <Grid item xs={12}>
                                     <FormHelperText error>{errors.submit}</FormHelperText>

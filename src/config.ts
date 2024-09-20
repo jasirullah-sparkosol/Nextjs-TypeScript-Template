@@ -62,7 +62,7 @@ const config: DefaultConfigProps = {
     fontFamily: publicSans.style.fontFamily,
     i18n: 'en',
     menuOrientation: MenuOrientation.VERTICAL,
-    miniDrawer: false,
+    miniDrawer: true,
     container: true,
     mode: ThemeMode.LIGHT,
     presetColor: 'default',
