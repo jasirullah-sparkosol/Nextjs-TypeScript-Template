@@ -10,7 +10,7 @@ export const twitterColor = '#1DA1F2';
 export const facebookColor = '#3b5998';
 export const linkedInColor = '#0e76a8';
 
-export const APP_DEFAULT_PATH = '/customers';
+export const APP_DEFAULT_PATH = '/gifts';
 export const SIGN_IN_PATH = '/sign-in';
 export const HORIZONTAL_MAX_ITEM = 7;
 export const DRAWER_WIDTH = 260;

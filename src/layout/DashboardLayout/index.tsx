@@ -68,7 +68,7 @@ export default function DashboardLayout({ children }: Props) {
         >
           <Breadcrumbs />
           {children}
-          <Footer />
+          {/*<Footer />*/}
         </Container>
       </Box>
     </Box>
